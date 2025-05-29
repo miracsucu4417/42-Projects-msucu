@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"stddef.h": "c",
+		"libft.h": "c",
+		"stdio.h": "c",
+		"stdlib.h": "c",
+		"unistd.h": "c",
+		"cstdlib": "c",
+		"limits.h": "c"
+	}
+}

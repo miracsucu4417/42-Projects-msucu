@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 21:08:03 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/29 22:36:55 by msucu            ###   ########.fr       */
+/*   Created: 2025/05/27 16:17:29 by msucu             #+#    #+#             */
+/*   Updated: 2025/05/29 22:45:09 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+void	*ft_memcpy(void *dest, void const *src, size_t n)
 {
-	return (32 <= c && c <= 126);
+	unsigned char	*d;
+	unsigned char	*s;
+	size_t			i;
+
+	d = (unsigned char *) dest;
+	s = (unsigned char *) src;
+	i = 0;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dest);
 }

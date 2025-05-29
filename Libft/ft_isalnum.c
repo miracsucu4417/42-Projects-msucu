@@ -6,7 +6,7 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 21:08:03 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/26 23:30:44 by msucu            ###   ########.fr       */
+/*   Updated: 2025/05/29 22:35:34 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 int	ft_isalnum(int c)
 {
-	if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z')
-		|| ('0' <= c && c <= '9'))
-		return (1);
-	return (0);
+	return (ft_isalpha(c) || ft_isdigit(c));
 }
