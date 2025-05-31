@@ -6,11 +6,12 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 23:32:32 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/28 18:03:50 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 00:29:10 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
 
 int	ft_strncmp(char const *s1, char const *s2, size_t n)
 {

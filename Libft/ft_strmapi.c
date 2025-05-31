@@ -6,11 +6,12 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:55:23 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/30 00:09:31 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 00:29:05 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
 
 static char	*ft_create_empty_string(void)
 {
@@ -34,6 +35,8 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 		return (ft_create_empty_string());
 	len = ft_strlen(s);
 	newstr = (char *) ft_calloc(len + 1, sizeof(char));
+	if (newstr == NULL)
+		return (NULL);
 	i = 0;
 	while (s[i])
 	{

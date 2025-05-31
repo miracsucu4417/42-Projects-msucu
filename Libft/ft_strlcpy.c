@@ -6,11 +6,12 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:43:58 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/28 18:03:36 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 00:28:54 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
 
 size_t	ft_strlcpy(char *dest, char const *src, size_t size)
 {

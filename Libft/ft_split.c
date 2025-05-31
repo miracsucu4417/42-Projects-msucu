@@ -6,10 +6,12 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:31:47 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/29 23:52:06 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 00:40:56 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdlib.h>
 #include "libft.h"
 
 static int	ft_reset_arr(char **strarr, unsigned int i)
@@ -22,24 +24,12 @@ static int	ft_reset_arr(char **strarr, unsigned int i)
 
 static int	ft_add_word(char const *begin, char c, char **strarr, size_t i2)
 {
-	char const		*end;
-	unsigned int	i;
+	size_t	len;
 
-	i = 0;
-	while (begin[i])
-	{
-		if (begin[i] == c)
-		{
-			end = &begin[i - 1];
-			strarr[i2] = ft_substr(begin, 0, end - begin + 1);
-			if (strarr[i2] == NULL)
-				return (ft_reset_arr(strarr, i2));
-			return (1);
-		}
-		i++;
-	}
-	end = &begin[i - 1];
-	strarr[i2] = ft_substr(begin, 0, end - begin + 1);
+	len = 0;
+	while (begin[len] && begin[len] != c)
+		len++;
+	strarr[i2] = ft_substr(begin, 0, len);
 	if (strarr[i2] == NULL)
 		return (ft_reset_arr(strarr, i2));
 	return (1);
@@ -69,27 +59,25 @@ static int	ft_fill_arr(char const *s, char c, char **strarr)
 	return (1);
 }
 
-static size_t	ft_count_c(char const *s, char c)
+static size_t	ft_count_words(char const *s, char c)
 {
-	unsigned int	i;
-	size_t			strarr_len;
-	int				is_else;
+	size_t	count;
+	int		in_word;
 
-	is_else = 0;
-	strarr_len = 1;
-	i = 0;
-	while (s[i])
+	count = 0;
+	in_word = 0;
+	while (*s)
 	{
-		if (s[i] != c)
-			is_else = 1;
-		if (s[i] == c && is_else == 1)
+		if (*s != c && in_word == 0)
 		{
-			strarr_len++;
-			is_else = 0;
+			in_word = 1;
+			count++;
 		}
-		i++;
+		else if (*s == c)
+			in_word = 0;
+		s++;
 	}
-	return (strarr_len);
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
@@ -98,10 +86,16 @@ char	**ft_split(char const *s, char c)
 	size_t			strarr_len;
 
 	if (s == NULL)
-		return (NULL);
-	strarr_len = ft_count_c(s, c);
+	{
+		strarr = (char **) ft_calloc(1, sizeof(char *));
+		strarr[0] = NULL;
+		return (strarr);
+	}
+	strarr_len = ft_count_words(s, c);
 	strarr = (char **) ft_calloc(strarr_len + 1, sizeof(char *));
-	if (strarr == NULL || ft_fill_arr(s, c, strarr) == 0)
+	if (strarr == NULL)
+		return (NULL);
+	if (ft_fill_arr(s, c, strarr) == 0)
 		return (NULL);
 	return (strarr);
 }

@@ -6,11 +6,12 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:26:27 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/29 13:15:42 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 00:26:13 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
 
 static void	ft_copy_forward(unsigned char *d, const unsigned char *s, size_t n)
 {

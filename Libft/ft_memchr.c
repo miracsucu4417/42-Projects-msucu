@@ -6,11 +6,12 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 23:56:02 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/28 18:02:35 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 00:25:58 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
 
 void	*ft_memchr(void const *s, int c, size_t n)
 {

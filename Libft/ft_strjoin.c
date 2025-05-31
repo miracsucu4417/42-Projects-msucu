@@ -6,11 +6,12 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:46:59 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/29 23:57:37 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 00:28:39 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
