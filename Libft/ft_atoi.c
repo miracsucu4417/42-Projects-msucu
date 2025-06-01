@@ -6,12 +6,11 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:38:39 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 01:06:03 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 18:47:18 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 #include <limits.h>
 
 static int	ft_isspace(int c)
@@ -27,7 +26,7 @@ int	ft_atoi(char const *str)
 
 	if (*str == '\0')
 		return (0);
-	while (*str && ft_isspace(*str))
+	while (ft_isspace(*str))
 		str++;
 	sign = 1;
 	if (*str == '+' || *str == '-')
@@ -37,7 +36,7 @@ int	ft_atoi(char const *str)
 		str++;
 	}
 	num = 0;
-	while (*str && ft_isdigit(*str))
+	while (ft_isdigit(*str))
 	{
 		if (num > (LONG_MAX - (*str - '0')) / 10)
 			return ((sign == 1) * -1 + (sign != 1) * 0);

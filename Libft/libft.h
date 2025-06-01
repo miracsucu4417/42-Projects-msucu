@@ -6,7 +6,7 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 23:11:17 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 00:43:54 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 18:05:53 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 # define LIBFT_H
 
 # include <stddef.h>
-// #include <stdlib.h>
-// #include <unistd.h>
-// #include <stdint.h>
-// #include <limits.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

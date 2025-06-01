@@ -6,11 +6,10 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 23:24:17 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 00:35:28 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 18:08:07 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "libft.h"
 
 size_t	ft_strlen(char const *str)

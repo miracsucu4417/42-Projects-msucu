@@ -6,12 +6,11 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 22:26:26 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 00:25:56 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 18:07:35 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 
 static int	ft_digit_count(int n)
 {

@@ -6,12 +6,11 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:53:46 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 00:30:58 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 18:08:18 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 
 char	*ft_strtrim(char const *s1, char const *set)
 {

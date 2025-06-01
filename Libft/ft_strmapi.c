@@ -6,12 +6,11 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:55:23 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 00:29:05 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 18:08:09 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 
 static char	*ft_create_empty_string(void)
 {

@@ -6,13 +6,12 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:31:47 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 00:40:56 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/01 18:52:48 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
 
 static int	ft_reset_arr(char **strarr, unsigned int i)
 {
@@ -38,21 +37,21 @@ static int	ft_add_word(char const *begin, char c, char **strarr, size_t i2)
 static int	ft_fill_arr(char const *s, char c, char **strarr)
 {
 	unsigned int	i;
-	int				is_c;
+	int				in_word;
 
-	is_c = 1;
+	in_word = 0;
 	i = 0;
 	while (*s)
 	{
-		if (*s != c && is_c == 1)
+		if (*s != c && in_word == 0)
 		{
-			is_c = 0;
+			in_word = 1;
 			if (!ft_add_word(s, c, strarr, i))
 				return (0);
 			i++;
 		}
 		if (*s == c)
-			is_c = 1;
+			in_word = 0;
 		s++;
 	}
 	strarr[i] = NULL;
