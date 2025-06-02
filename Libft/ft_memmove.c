@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 static void	ft_copy_forward(unsigned char *d, const unsigned char *s, size_t n)
 {

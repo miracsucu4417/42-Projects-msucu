@@ -19,29 +19,29 @@ static int	ft_isspace(int c)
 		|| c == '\r' || c == '\t' || c == '\v');
 }
 
-int	ft_atoi(char const *str)
+int	ft_atoi(char const *nptr)
 {
 	long long	num;
 	int			sign;
 
-	if (*str == '\0')
+	if (*nptr == '\0')
 		return (0);
-	while (ft_isspace(*str))
-		str++;
+	while (ft_isspace(*nptr))
+		nptr++;
 	sign = 1;
-	if (*str == '+' || *str == '-')
+	if (*nptr == '+' || *nptr == '-')
 	{
-		if (*str == '-')
+		if (*nptr == '-')
 			sign = -1;
-		str++;
+		nptr++;
 	}
 	num = 0;
-	while (ft_isdigit(*str))
+	while (ft_isdigit(*nptr))
 	{
-		if (num > (LONG_MAX - (*str - '0')) / 10)
+		if (num > (LONG_MAX - (*nptr - '0')) / 10)
 			return ((sign == 1) * -1 + (sign != 1) * 0);
-		num = num * 10 + (*str - '0');
-		str++;
+		num = num * 10 + (*nptr - '0');
+		nptr++;
 	}
 	return ((int)(sign * num));
 }
