@@ -47,7 +47,7 @@ int main(void)
     RUN_ISASCII_TEST("Symbol '$'", '$');
     RUN_ISASCII_TEST("Space ' '", ' ');
     RUN_ISASCII_TEST("Newline '\\n'", '\n');
-    RUN_ISASCII_TEST("Null char '\\0'", '\0');
+    RUN_ISASCII_TEST("FT_NULL char '\\0'", '\0');
 
     // 2. Sınır Değerler
     RUN_ISASCII_TEST("ASCII Min (0)", 0);

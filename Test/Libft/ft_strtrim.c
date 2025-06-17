@@ -11,14 +11,14 @@ static int _run_strtrim_test_case(const char *s1, const char *set,
     char *result = ft_strtrim(s1, set);
     int passed = 1;
 
-    if (expected == NULL) {
-        if (result != NULL) {
-            printf("❌ FAILED: %s (Expected NULL, got non-NULL)\n", test_name);
+    if (expected == FT_NULL) {
+        if (result != FT_NULL) {
+            printf("❌ FAILED: %s (Expected FT_NULL, got non-FT_NULL)\n", test_name);
             passed = 0;
         }
     } else {
-        if (result == NULL) {
-            printf("❌ FAILED: %s (Expected \"%s\", got NULL)\n", test_name, expected);
+        if (result == FT_NULL) {
+            printf("❌ FAILED: %s (Expected \"%s\", got FT_NULL)\n", test_name, expected);
             passed = 0;
         } else if (strcmp(result, expected) != 0) {
             printf("❌ FAILED: %s\n", test_name);
@@ -52,10 +52,10 @@ int main(void) {
     RUN_STRTRIM_TEST("Empty input string", "", "abc", "");
     RUN_STRTRIM_TEST("Empty set", "  Hello  ", "", "  Hello  ");
 
-    // NULL kontrolleri
-    RUN_STRTRIM_TEST("s1 is NULL", NULL, "abc", NULL);
-    RUN_STRTRIM_TEST("set is NULL", "abc", NULL, NULL);
-    RUN_STRTRIM_TEST("Both NULL", NULL, NULL, NULL);
+    // FT_NULL kontrolleri
+    RUN_STRTRIM_TEST("s1 is FT_NULL", FT_NULL, "abc", FT_NULL);
+    RUN_STRTRIM_TEST("set is FT_NULL", "abc", FT_NULL, FT_NULL);
+    RUN_STRTRIM_TEST("Both FT_NULL", FT_NULL, FT_NULL, FT_NULL);
 
     // Karışık karakter seti
     RUN_STRTRIM_TEST("Multiple trim chars", "abcHelloabc", "abc", "Hello");

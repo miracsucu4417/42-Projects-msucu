@@ -49,7 +49,7 @@ int main(void)
     RUN_ISPRINT_TEST("Symbol '~'", '~');
 
     // 2. Yazdırılabilir Olmayan Kontrol Karakterleri
-    RUN_ISPRINT_TEST("Null char '\\0'", '\0');
+    RUN_ISPRINT_TEST("FT_NULL char '\\0'", '\0');
     RUN_ISPRINT_TEST("Tab '\\t'", '\t');
     RUN_ISPRINT_TEST("Newline '\\n'", '\n');
     RUN_ISPRINT_TEST("Backspace (ASCII 8)", 8);

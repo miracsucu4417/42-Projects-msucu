@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 23:32:32 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/17 18:57:28 by msucu            ###   ########.fr       */
+/*   Created: 2025/06/17 19:53:22 by msucu             #+#    #+#             */
+/*   Updated: 2025/06/17 22:35:55 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(char const *s1, char const *s2, t_size_t n)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_size_t	i;
-
-	if (n == 0)
-		return (0);
-	i = 0;
-	while (i < n && s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	if (i == n)
-		return (0);
-	return ((int)((unsigned char) s1[i] - (unsigned char) s2[i]));
+	if (lst == FT_NULL || new == FT_NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

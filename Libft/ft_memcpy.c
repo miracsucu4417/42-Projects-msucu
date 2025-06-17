@@ -6,19 +6,19 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:17:29 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:07:43 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:59:30 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-void	*ft_memcpy(void *dest, void const *src, size_t n)
+void	*ft_memcpy(void *dest, void const *src, t_size_t n)
 {
 	unsigned char	*d;
 	unsigned char	*s;
-	size_t			i;
+	t_size_t		i;
 
-	if ((dest == NULL && src == NULL) || n == 0)
+	if ((dest == FT_NULL && src == FT_NULL) || n == 0)
 		return (dest);
 	d = (unsigned char *) dest;
 	s = (unsigned char *) src;

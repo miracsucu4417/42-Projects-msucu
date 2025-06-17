@@ -64,7 +64,7 @@ int main(void)
     RUN_TOUPPER_TEST("Space ' '", ' ');
     RUN_TOUPPER_TEST("Newline '\\n'", '\n');
     RUN_TOUPPER_TEST("Tab '\\t'", '\t');
-    RUN_TOUPPER_TEST("Null char '\\0'", '\0');
+    RUN_TOUPPER_TEST("FT_NULL char '\\0'", '\0');
 
     // 6. Sınır Değerler (ASCII Tablosuna göre)
     // Küçük harf aralığının hemen dışındakiler

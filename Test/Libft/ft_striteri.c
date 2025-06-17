@@ -27,10 +27,10 @@ void shift_char(unsigned int i, char *c) {
 // Yardımcı test fonksiyonu
 static int _run_striteri_test_case(char *s, void (*f)(unsigned int, char *),
                                   const char *expected, const char *test_name) {
-    if (s == NULL) {
-        // PDF açıklamasında NULL input durumundan bahsedilmiyor.
+    if (s == FT_NULL) {
+        // PDF açıklamasında FT_NULL input durumundan bahsedilmiyor.
         // Biz burada işleme almıyoruz.
-        printf("Skipping %s (input string is NULL)\n", test_name);
+        printf("Skipping %s (input string is FT_NULL)\n", test_name);
         return 1; // geçerli say
     }
 
@@ -67,10 +67,10 @@ int main(void) {
     RUN_STRITERI_TEST("Star even indices", "abcdef", star_even_index, "*b*d*f");
     RUN_STRITERI_TEST("Shift chars by index", "abcd", shift_char, "aceg");
     RUN_STRITERI_TEST("Empty string", "", to_upper, "");
-    RUN_STRITERI_TEST("No function (NULL f)", "test", NULL, "test");
+    RUN_STRITERI_TEST("No function (FT_NULL f)", "test", FT_NULL, "test");
 
-    // NULL input test - PDF'de belirtilmemiş
-    printf("\nSkipping NULL input test since spec does not clarify behavior.\n");
+    // FT_NULL input test - PDF'de belirtilmemiş
+    printf("\nSkipping FT_NULL input test since spec does not clarify behavior.\n");
 
     printf("\n--- Test Summary for ft_striteri ---\n");
     if (total_tests == passed_tests) {

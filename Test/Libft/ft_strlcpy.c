@@ -7,13 +7,13 @@
 #include "libft.h"     // Eğer libft.h main.c ile aynı dizindeyse
 
 // İç yardımcı fonksiyon: Bellek içeriğini görselleştirmek için
-void print_memory(const char *label, const char *mem, size_t n) {
+void print_memory(const char *label, const char *mem, t_size_t n) {
     printf("%s [", label);
-    for (size_t i = 0; i < n; ++i) {
+    for (t_size_t i = 0; i < n; ++i) {
         if (mem[i] >= 32 && mem[i] <= 126) // Yazdırılabilir karakterler
             printf("%c", mem[i]);
         else if (mem[i] == '\0')
-            printf("N"); // Null bayt için 'N' (Null)
+            printf("N"); // FT_NULL bayt için 'N' (FT_NULL)
         else
             printf("."); // Diğer yazdırılamayan karakterler için nokta
     }
@@ -23,7 +23,7 @@ void print_memory(const char *label, const char *mem, size_t n) {
 // Test yardımcı fonksiyonu: Tek bir test senaryosunu çalıştırır ve sonucu döndürür.
 // `ft_dest_buf`, `original_dest_buf` main'den gelen buffer'lardır.
 static int _run_strlcpy_test_case(char *ft_dest_buf, char *original_dest_buf, 
-                                  const char *src, size_t dest_size, const char *test_name) {
+                                  const char *src, t_size_t dest_size, const char *test_name) {
     
     // Her iki hedef buffer'ı da başlangıçta 'A' ile dolduralım
     // Kopyalanmayan kısımların değiştirilmediğini test etmek için.
@@ -31,13 +31,13 @@ static int _run_strlcpy_test_case(char *ft_dest_buf, char *original_dest_buf,
     memset(original_dest_buf, 'A', 200); // 200, main'deki buffer boyutuna göre
 
     // ft_strlcpy'yi çağır
-    size_t ft_ret = ft_strlcpy(ft_dest_buf, src, dest_size);
+    t_size_t ft_ret = ft_strlcpy(ft_dest_buf, src, dest_size);
 
     // Orijinal strlcpy'yi çağır
-    size_t original_ret = strlcpy(original_dest_buf, src, dest_size);
+    t_size_t original_ret = strlcpy(original_dest_buf, src, dest_size);
 
     // Karşılaştırma: Tüm hedef buffer'ı (200 bayt) karşılaştır.
-    // Bu, null terminasyonun ve buffer sınırının doğru çalışmasını kontrol eder.
+    // Bu, FT_NULL terminasyonun ve buffer sınırının doğru çalışmasını kontrol eder.
     int passed = (memcmp(ft_dest_buf, original_dest_buf, 200) == 0 && ft_ret == original_ret);
 
     if (!passed) {
@@ -71,25 +71,25 @@ int main(void)
     printf("--- Running ft_strlcpy Tests ---\n\n");
 
     // 1. Temel Kopyalamalar
-    RUN_STRLCPY_TEST("Full copy", "Hello World!", 20); // String sığar, null terminator dahil
-    RUN_STRLCPY_TEST("Exact fit", "ExactFit", 9);      // Tam sığar, null terminator dahil
-    RUN_STRLCPY_TEST("Partial copy (dest_size < src_len)", "Too Long String", 5); // "Too " kopyalanır, null ile biter
-    RUN_STRLCPY_TEST("Empty source string", "", 10);   // Boş string, sadece null kopyalanır
+    RUN_STRLCPY_TEST("Full copy", "Hello World!", 20); // String sığar, FT_NULL terminator dahil
+    RUN_STRLCPY_TEST("Exact fit", "ExactFit", 9);      // Tam sığar, FT_NULL terminator dahil
+    RUN_STRLCPY_TEST("Partial copy (dest_size < src_len)", "Too Long String", 5); // "Too " kopyalanır, FT_NULL ile biter
+    RUN_STRLCPY_TEST("Empty source string", "", 10);   // Boş string, sadece FT_NULL kopyalanır
     RUN_STRLCPY_TEST("Single char source", "A", 2);    // "A\0" kopyalanır
 
     // 2. Kenar Durumlar
-    RUN_STRLCPY_TEST("dest_size = 0 (No copy, no null)", "Hello", 0); // Hiçbir şey kopyalanmaz, null da. Return len("Hello").
-    RUN_STRLCPY_TEST("dest_size = 1 (Only null)", "Hello", 1);       // Sadece null kopyalanır. Return len("Hello").
-    RUN_STRLCPY_TEST("Source has internal null", "A\0B\0C", 10);    // İlk null'a kadar kopyalanır ("A\0" şeklinde)
+    RUN_STRLCPY_TEST("dest_size = 0 (No copy, no FT_NULL)", "Hello", 0); // Hiçbir şey kopyalanmaz, FT_NULL da. Return len("Hello").
+    RUN_STRLCPY_TEST("dest_size = 1 (Only FT_NULL)", "Hello", 1);       // Sadece FT_NULL kopyalanır. Return len("Hello").
+    RUN_STRLCPY_TEST("Source has internal FT_NULL", "A\0B\0C", 10);    // İlk FT_NULL'a kadar kopyalanır ("A\0" şeklinde)
     RUN_STRLCPY_TEST("Source len is 0, dest_size is 0", "", 0); // Return 0, dest değişmez
 
 
-    // 3. NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
-    // strlcpy'ye NULL dest veya NULL src geçmek C standartlarında tanımsız davranıştır.
+    // 3. FT_NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
+    // strlcpy'ye FT_NULL dest veya FT_NULL src geçmek C standartlarında tanımsız davranıştır.
     // Bu yüzden bu testleri çalıştırmak programın çökmesine neden olabilir.
-    // RUN_STRLCPY_TEST("NULL dest, valid src, size > 0", "source", 5); // dest pointer'ı
-    // RUN_STRLCPY_TEST("Valid dest, NULL src, size > 0", NULL, 10); // src pointer'ı
-    // RUN_STRLCPY_TEST("NULL dest, NULL src, size > 0", NULL, 5); // dest pointer'ı
+    // RUN_STRLCPY_TEST("FT_NULL dest, valid src, size > 0", "source", 5); // dest pointer'ı
+    // RUN_STRLCPY_TEST("Valid dest, FT_NULL src, size > 0", FT_NULL, 10); // src pointer'ı
+    // RUN_STRLCPY_TEST("FT_NULL dest, FT_NULL src, size > 0", FT_NULL, 5); // dest pointer'ı
     // RUN_STRLCPY_TEST("Valid dest, valid src, size=0", "source", 0);
 
 

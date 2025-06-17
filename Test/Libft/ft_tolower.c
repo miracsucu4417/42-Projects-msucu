@@ -64,7 +64,7 @@ int main(void)
     RUN_TOLOWER_TEST("Space ' '", ' ');
     RUN_TOLOWER_TEST("Newline '\\n'", '\n');
     RUN_TOLOWER_TEST("Tab '\\t'", '\t');
-    RUN_TOLOWER_TEST("Null char '\\0'", '\0');
+    RUN_TOLOWER_TEST("FT_NULL char '\\0'", '\0');
 
     // 6. Sınır Değerler (ASCII Tablosuna göre)
     // Büyük harf aralığının hemen dışındakiler

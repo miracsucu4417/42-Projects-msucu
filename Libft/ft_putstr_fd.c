@@ -6,7 +6,7 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 12:24:41 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:07:55 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:57:28 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	size_t	len;
+	t_size_t	len;
 
-	if (s == NULL || *s == '\0')
+	if (s == FT_NULL || *s == '\0')
 		return ;
 	len = ft_strlen(s);
 	write(fd, s, len);

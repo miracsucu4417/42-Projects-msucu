@@ -6,13 +6,13 @@
 #include "libft.h"  // veya "Libft/libft.h"
 
 // Yardımcı fonksiyon: Belleği görsel olarak incelemek için
-void print_memory(const char *label, const char *mem, size_t n) {
+void print_memory(const char *label, const char *mem, t_size_t n) {
     printf("%s [", label);
-    for (size_t i = 0; i < n; ++i) {
+    for (t_size_t i = 0; i < n; ++i) {
         if (mem[i] >= 32 && mem[i] <= 126)
             printf("%c", mem[i]);
         else if (mem[i] == '\0')
-            printf("N"); // Null byte
+            printf("N"); // FT_NULL byte
         else
             printf(".");
     }
@@ -25,14 +25,14 @@ static int _run_strjoin_test_case(const char *s1, const char *s2,
     char *result = ft_strjoin(s1, s2);
     int passed = 1;
 
-    if (expected_result == NULL) {
-        if (result != NULL) {
-            printf("❌ FAILED: %s (Expected NULL, got non-NULL)\n", test_name);
+    if (expected_result == FT_NULL) {
+        if (result != FT_NULL) {
+            printf("❌ FAILED: %s (Expected FT_NULL, got non-FT_NULL)\n", test_name);
             passed = 0;
         }
     } else {
-        if (result == NULL) {
-            printf("❌ FAILED: %s (Expected \"%s\", got NULL)\n", test_name, expected_result);
+        if (result == FT_NULL) {
+            printf("❌ FAILED: %s (Expected \"%s\", got FT_NULL)\n", test_name, expected_result);
             passed = 0;
         } else if (strcmp(result, expected_result) != 0 || strlen(result) != strlen(expected_result)) {
             printf("❌ FAILED: %s\n", test_name);
@@ -66,15 +66,15 @@ int main(void) {
     // Uzun stringler
     RUN_STRJOIN_TEST("Long strings", "aaaaaaaaaa", "bbbbbbbbbb", "aaaaaaaaaabbbbbbbbbb");
 
-    // NULL testleri (standart strjoin bu durumda davranış tanımsızdır ama biz test için NULL'ı da kontrol ediyoruz)
-    RUN_STRJOIN_TEST("s1 is NULL", NULL, "World", NULL);
-    RUN_STRJOIN_TEST("s2 is NULL", "Hello", NULL, NULL);
-    RUN_STRJOIN_TEST("Both NULL", NULL, NULL, NULL);
+    // FT_NULL testleri (standart strjoin bu durumda davranış tanımsızdır ama biz test için FT_NULL'ı da kontrol ediyoruz)
+    RUN_STRJOIN_TEST("s1 is FT_NULL", FT_NULL, "World", FT_NULL);
+    RUN_STRJOIN_TEST("s2 is FT_NULL", "Hello", FT_NULL, FT_NULL);
+    RUN_STRJOIN_TEST("Both FT_NULL", FT_NULL, FT_NULL, FT_NULL);
 
-    // Null karakter içeren test (görünmez karakter olabilir ama strcmp onu dikkate almaz çünkü ilk null'da durur)
-    char s1_with_null[] = {'a', 'b', '\0', 'c'}; // C string olarak sadece "ab"
-    char s2_with_null[] = {'x', 'y', '\0', 'z'}; // C string olarak sadece "xy"
-    RUN_STRJOIN_TEST("String with internal nulls", s1_with_null, s2_with_null, "abxy");
+    // FT_NULL karakter içeren test (görünmez karakter olabilir ama strcmp onu dikkate almaz çünkü ilk FT_NULL'da durur)
+    char s1_with_FT_NULL[] = {'a', 'b', '\0', 'c'}; // C string olarak sadece "ab"
+    char s2_with_FT_NULL[] = {'x', 'y', '\0', 'z'}; // C string olarak sadece "xy"
+    RUN_STRJOIN_TEST("String with internal FT_NULLs", s1_with_FT_NULL, s2_with_FT_NULL, "abxy");
 
     printf("\n--- Test Summary for ft_strjoin ---\n");
     if (total_tests == passed_tests) {

@@ -6,21 +6,21 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:05:14 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:08:13 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:57:28 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-char	*ft_strnstr(char const *big, char const *little, size_t len)
+char	*ft_strnstr(char const *big, char const *little, t_size_t len)
 {
-	size_t		i;
-	size_t		j;
+	t_size_t		i;
+	t_size_t		j;
 
 	if (*little == '\0')
 		return ((char *)(big));
 	if (len == 0)
-		return (NULL);
+		return (FT_NULL);
 	i = 0;
 	while (i < len && big[i])
 	{
@@ -34,5 +34,5 @@ char	*ft_strnstr(char const *big, char const *little, size_t len)
 		}
 		i++;
 	}
-	return (NULL);
+	return (FT_NULL);
 }

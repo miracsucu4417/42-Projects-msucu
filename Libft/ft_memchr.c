@@ -6,20 +6,20 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 23:56:02 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:07:38 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:59:24 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, t_size_t n)
 {
 	unsigned char	*temp;
 	unsigned char	temp_c;
-	size_t			i;
+	t_size_t		i;
 
 	if (n == 0)
-		return (NULL);
+		return (FT_NULL);
 	temp_c = (unsigned char) c;
 	temp = (unsigned char *) s;
 	i = 0;
@@ -29,5 +29,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 			return ((void *) &(temp[i]));
 		i++;
 	}
-	return (NULL);
+	return (FT_NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:31:47 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:52:48 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 19:28:22 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ static int	ft_reset_arr(char **strarr, unsigned int i)
 	return (0);
 }
 
-static int	ft_add_word(char const *begin, char c, char **strarr, size_t i2)
+static int	ft_add_word(char const *begin, char c, char **strarr, t_size_t i2)
 {
-	size_t	len;
+	t_size_t	len;
 
 	len = 0;
 	while (begin[len] && begin[len] != c)
 		len++;
 	strarr[i2] = ft_substr(begin, 0, len);
-	if (strarr[i2] == NULL)
+	if (strarr[i2] == FT_NULL)
 		return (ft_reset_arr(strarr, i2));
 	return (1);
 }
@@ -54,14 +54,14 @@ static int	ft_fill_arr(char const *s, char c, char **strarr)
 			in_word = 0;
 		s++;
 	}
-	strarr[i] = NULL;
+	strarr[i] = FT_NULL;
 	return (1);
 }
 
-static size_t	ft_count_words(char const *s, char c)
+static t_size_t	ft_count_words(char const *s, char c)
 {
-	size_t	count;
-	int		in_word;
+	t_size_t	count;
+	int			in_word;
 
 	count = 0;
 	in_word = 0;
@@ -82,19 +82,19 @@ static size_t	ft_count_words(char const *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char			**strarr;
-	size_t			strarr_len;
+	t_size_t		strarr_len;
 
-	if (s == NULL)
+	if (s == FT_NULL)
 	{
 		strarr = (char **) ft_calloc(1, sizeof(char *));
-		strarr[0] = NULL;
+		strarr[0] = FT_NULL;
 		return (strarr);
 	}
 	strarr_len = ft_count_words(s, c);
 	strarr = (char **) ft_calloc(strarr_len + 1, sizeof(char *));
-	if (strarr == NULL)
-		return (NULL);
+	if (strarr == FT_NULL)
+		return (FT_NULL);
 	if (ft_fill_arr(s, c, strarr) == 0)
-		return (NULL);
+		return (FT_NULL);
 	return (strarr);
 }

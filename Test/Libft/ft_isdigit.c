@@ -59,7 +59,7 @@ int main(void)
     RUN_ISDIGIT_TEST("Space ' '", ' ');
     RUN_ISDIGIT_TEST("Newline '\\n'", '\n');
     RUN_ISDIGIT_TEST("Tab '\\t'", '\t');
-    RUN_ISDIGIT_TEST("Null char '\\0'", '\0');
+    RUN_ISDIGIT_TEST("FT_NULL char '\\0'", '\0');
 
     // 5. Sınır Değerler (ASCII Tablosuna göre)
     RUN_ISDIGIT_TEST("ASCII 47 (Before '0')", 47); // '/'

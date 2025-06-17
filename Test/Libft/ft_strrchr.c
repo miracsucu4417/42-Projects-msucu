@@ -42,7 +42,7 @@ int main(void)
     RUN_STRRCHR_TEST("Found in middle (last 'o')", "Hello World", 'o'); // Should point to last 'o'
     RUN_STRRCHR_TEST("Found at beginning (only one 'H')", "Hello World", 'H'); // Should point to first 'H'
     RUN_STRRCHR_TEST("Found multiple times (last 'a')", "banana", 'a'); // Should point to last 'a'
-    RUN_STRRCHR_TEST("Found null terminator", "Hello", '\0'); // Should point to '\0'
+    RUN_STRRCHR_TEST("Found FT_NULL terminator", "Hello", '\0'); // Should point to '\0'
 
     // 2. Karakter Bulunamadı
     RUN_STRRCHR_TEST("Not found", "Hello World", 'x');
@@ -50,10 +50,10 @@ int main(void)
     RUN_STRRCHR_TEST("Empty string, char not found", "", 'a');
 
     // 3. Kenar Durumlar
-    RUN_STRRCHR_TEST("Empty string, find null terminator", "", '\0'); // Should point to the null terminator
+    RUN_STRRCHR_TEST("Empty string, find FT_NULL terminator", "", '\0'); // Should point to the FT_NULL terminator
     RUN_STRRCHR_TEST("Single char string, found", "A", 'A');
     RUN_STRRCHR_TEST("Single char string, not found", "A", 'B');
-    RUN_STRRCHR_TEST("String containing only null", "", '\0'); // Same as empty string test for null
+    RUN_STRRCHR_TEST("String containing only FT_NULL", "", '\0'); // Same as empty string test for FT_NULL
 
     // 4. Özel Karakterler (int c)
     RUN_STRRCHR_TEST("Find digit", "abc123xyz123", '3');
@@ -72,11 +72,11 @@ int main(void)
     RUN_STRRCHR_TEST("Long string - found last Y", long_str, 'Y');
     RUN_STRRCHR_TEST("Long string - not found", long_str, 'Z');
 
-    // 6. NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
-    // strrchr'a NULL s geçmek C standartlarında tanımsız davranıştır.
+    // 6. FT_NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
+    // strrchr'a FT_NULL s geçmek C standartlarında tanımsız davranıştır.
     // Bu yüzden bu testleri çalıştırmak programın çökmesine neden olabilir.
-    // RUN_STRRCHR_TEST("NULL string", NULL, 'a');
-    // RUN_STRRCHR_TEST("NULL string, find null", NULL, '\0');
+    // RUN_STRRCHR_TEST("FT_NULL string", FT_NULL, 'a');
+    // RUN_STRRCHR_TEST("FT_NULL string, find FT_NULL", FT_NULL, '\0');
 
     printf("\n--- Test Summary for ft_strrchr ---\n");
     if (total_tests == passed_tests) {

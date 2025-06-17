@@ -11,8 +11,8 @@ static int _run_itoa_test_case(int n, const char *expected_str, const char *test
     char *ft_result = ft_itoa(n);
     int passed = 1;
 
-    if (ft_result == NULL) {
-        printf("❌ FAILED: %s (Returned NULL)\n", test_name);
+    if (ft_result == FT_NULL) {
+        printf("❌ FAILED: %s (Returned FT_NULL)\n", test_name);
         passed = 0;
     }
     else {

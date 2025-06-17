@@ -6,7 +6,7 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:53:46 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:08:18 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:51:01 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char const	*begin;
 	char const	*end;
 
-	if (s1 == NULL || set == NULL)
-		return (NULL);
+	if (s1 == FT_NULL || set == FT_NULL)
+		return (FT_NULL);
 	begin = s1;
 	while (ft_strchr(set, *begin))
 		begin++;

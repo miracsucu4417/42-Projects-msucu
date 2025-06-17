@@ -5,13 +5,13 @@
 #include "libft.h"     // Eğer libft.h main.c ile aynı dizindeyse
 
 // İç yardımcı fonksiyon: Bellek içeriğini görselleştirmek için
-void print_memory(const char *label, const char *mem, size_t n) {
+void print_memory(const char *label, const char *mem, t_size_t n) {
     printf("%s [", label);
-    for (size_t i = 0; i < n; ++i) {
+    for (t_size_t i = 0; i < n; ++i) {
         if (mem[i] >= 32 && mem[i] <= 126) // Yazdırılabilir karakterler
             printf("%c", mem[i]);
         else if (mem[i] == '\0')
-            printf("N"); // Null bayt için 'N' (Null)
+            printf("N"); // FT_NULL bayt için 'N' (FT_NULL)
         else
             printf("%02X", (unsigned char)mem[i]); // Hex değerini göster
     }
@@ -20,29 +20,29 @@ void print_memory(const char *label, const char *mem, size_t n) {
 
 // Orijinal strnstr'ın davranışını taklit eden yardımcı fonksiyon (BSD bağımlılığını kaldırmak için)
 // Bu fonksiyonu test main.c dosyanızın içinde bulundurun.
-static char *my_original_strnstr(const char *big, const char *little, size_t len)
+static char *my_original_strnstr(const char *big, const char *little, t_size_t len)
 {
-    size_t  little_len;
+    t_size_t  little_len;
 
-    if (!little) // Güvenlik için, NULL needle kabul etmez. Orijinal strnstr'ın davranışı NULL'da UB'dir.
-        return (NULL);
+    if (!little) // Güvenlik için, FT_NULL needle kabul etmez. Orijinal strnstr'ın davranışı FT_NULL'da UB'dir.
+        return (FT_NULL);
     little_len = strlen(little);
     if (little_len == 0)
         return ((char *)big); // Eğer little boşsa, big'i döndür
 
     // Arama yapılacak alanın boyutunu big ve len'in minimumu olarak al
-    size_t big_len_actual = strlen(big);
-    if (len == 0) return NULL; // Eğer arama uzunluğu 0 ise ve needle boş değilse, bulunamaz.
+    t_size_t big_len_actual = strlen(big);
+    if (len == 0) return FT_NULL; // Eğer arama uzunluğu 0 ise ve needle boş değilse, bulunamaz.
 
     // big_len, arama yapılacak max big_len.
     // big_len = (big_len_actual < len) ? big_len_actual : len;
 
     // big'i baştan sona tara
-    for (size_t i = 0; i < len && big[i]; i++) // len'e kadar veya big'in sonuna kadar git
+    for (t_size_t i = 0; i < len && big[i]; i++) // len'e kadar veya big'in sonuna kadar git
     {
         // Eğer kalan big uzunluğu little'dan kısaysa, artık bulamayız
         if (len - i < little_len)
-            return (NULL);
+            return (FT_NULL);
 
         // Eğer mevcut karakter eşleşirse ve kalan kısım yeterliyse
         if (big[i] == little[0] && memcmp(&big[i], little, little_len) == 0)
@@ -50,12 +50,12 @@ static char *my_original_strnstr(const char *big, const char *little, size_t len
             return ((char *)&big[i]); // Bulunan yeri döndür
         }
     }
-    return (NULL); // Bulunamadı
+    return (FT_NULL); // Bulunamadı
 }
 
 
 // Test yardımcı fonksiyonu: Tek bir test senaryosunu çalıştırır ve sonucu döndürür.
-static int _run_strnstr_test_case(const char *haystack, const char *needle, size_t len, const char *test_name) {
+static int _run_strnstr_test_case(const char *haystack, const char *needle, t_size_t len, const char *test_name) {
     char *ft_result = ft_strnstr(haystack, needle, len);
     char *original_result = my_original_strnstr(haystack, needle, len); // Kendi yazdığımız orijinal taklit fonksiyonu
     
@@ -67,8 +67,8 @@ static int _run_strnstr_test_case(const char *haystack, const char *needle, size
         printf("  Haystack: \"%s\"\n", haystack);
         printf("  Needle:   \"%s\"\n", needle);
         printf("  Len:      %zu\n", len);
-        printf("  ft_strnstr returned:      %p (-> \"%s\")\n", (void *)ft_result, ft_result ? ft_result : "NULL");
-        printf("  Original strnstr returned: %p (-> \"%s\")\n", (void *)original_result, original_result ? original_result : "NULL");
+        printf("  ft_strnstr returned:      %p (-> \"%s\")\n", (void *)ft_result, ft_result ? ft_result : "FT_NULL");
+        printf("  Original strnstr returned: %p (-> \"%s\")\n", (void *)original_result, original_result ? original_result : "FT_NULL");
     }
     return passed;
 }
@@ -109,10 +109,10 @@ int main(void)
     RUN_STRNSTR_TEST("Len is 0", "Hello World", "Hello", 0); 
     RUN_STRNSTR_TEST("Len is 0, empty needle", "Hello World", "", 0); 
 
-    // 5. Haystack / Needle İçinde Null Karakter
-    RUN_STRNSTR_TEST("Needle with internal null", "abc\0def", "bc\0d", 7); 
-    RUN_STRNSTR_TEST("Haystack with internal null, needle before null", "abc\0def", "bc", 3); 
-    RUN_STRNSTR_TEST("Haystack with internal null, needle after null", "abc\0def", "def", 7); 
+    // 5. Haystack / Needle İçinde FT_NULL Karakter
+    RUN_STRNSTR_TEST("Needle with internal FT_NULL", "abc\0def", "bc\0d", 7); 
+    RUN_STRNSTR_TEST("Haystack with internal FT_NULL, needle before FT_NULL", "abc\0def", "bc", 3); 
+    RUN_STRNSTR_TEST("Haystack with internal FT_NULL, needle after FT_NULL", "abc\0def", "def", 7); 
 
     // 6. Çok Uzun Stringler
     char long_haystack[200];
@@ -124,11 +124,11 @@ int main(void)
     RUN_STRNSTR_TEST("Long haystack, needle not found", long_haystack, "nope", 200);
     RUN_STRNSTR_TEST("Long haystack, needle beyond len", long_haystack, long_needle, 50); 
 
-    // 7. NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
-    // strnstr'a NULL pointer geçmek C standartlarında tanımsız davranıştır.
+    // 7. FT_NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
+    // strnstr'a FT_NULL pointer geçmek C standartlarında tanımsız davranıştır.
     // Bu yüzden bu testleri çalıştırmak programın çökmesine neden olabilir.
-    // RUN_STRNSTR_TEST("NULL haystack", NULL, "test", 5);
-    // RUN_STRNSTR_TEST("NULL needle", "test", NULL, 5);
+    // RUN_STRNSTR_TEST("FT_NULL haystack", FT_NULL, "test", 5);
+    // RUN_STRNSTR_TEST("FT_NULL needle", "test", FT_NULL, 5);
 
 
     printf("\n--- Test Summary for ft_strnstr ---\n");

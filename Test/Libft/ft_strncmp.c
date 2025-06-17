@@ -6,7 +6,7 @@
 
 // Test yardımcı fonksiyonu: Tek bir test senaryosunu çalıştırır ve sonucu döndürür.
 // Sadece FAILED olduğunda detayları yazdırır.
-static int _run_strncmp_test_case(const char *s1, const char *s2, size_t n, const char *test_name) {
+static int _run_strncmp_test_case(const char *s1, const char *s2, t_size_t n, const char *test_name) {
     int ft_result = ft_strncmp(s1, s2, n);
     int original_result = strncmp(s1, s2, n);
     
@@ -62,14 +62,14 @@ int main(void)
     // 4. N Parametresi Testleri
     RUN_STRNCMP_TEST("N = 0 (always equal)", "Hello", "World", 0);
     RUN_STRNCMP_TEST("N less than common prefix", "apple", "apricot", 2); // "ap" equal
-    RUN_STRNCMP_TEST("N larger than string length", "hi", "hi", 10); // Should stop at null
+    RUN_STRNCMP_TEST("N larger than string length", "hi", "hi", 10); // Should stop at FT_NULL
     RUN_STRNCMP_TEST("N larger than one string, but stops at diff", "abc", "abd", 10); // "ab" equal, c vs d
 
-    // 5. Null Karakter Testleri
-    RUN_STRNCMP_TEST("s1 has null in middle", "ab\0cd", "ab\0ef", 5); // Should compare a,b,null,c,d
-    RUN_STRNCMP_TEST("s2 has null in middle", "ab\0ef", "ab\0cd", 5); // Should compare a,b,null,e,f
-    RUN_STRNCMP_TEST("s1 shorter (ends with null)", "abc", "abcd", 4); // 'c' vs 'd' on 4th char
-    RUN_STRNCMP_TEST("s2 shorter (ends with null)", "abcd", "abc", 4); // 'd' vs '\0' on 4th char
+    // 5. FT_NULL Karakter Testleri
+    RUN_STRNCMP_TEST("s1 has FT_NULL in middle", "ab\0cd", "ab\0ef", 5); // Should compare a,b,FT_NULL,c,d
+    RUN_STRNCMP_TEST("s2 has FT_NULL in middle", "ab\0ef", "ab\0cd", 5); // Should compare a,b,FT_NULL,e,f
+    RUN_STRNCMP_TEST("s1 shorter (ends with FT_NULL)", "abc", "abcd", 4); // 'c' vs 'd' on 4th char
+    RUN_STRNCMP_TEST("s2 shorter (ends with FT_NULL)", "abcd", "abc", 4); // 'd' vs '\0' on 4th char
     RUN_STRNCMP_TEST("One empty, one not (N > 0)", "", "abc", 1);
     RUN_STRNCMP_TEST("One empty, one not (N > 0, reversed)", "abc", "", 1);
 
@@ -83,12 +83,12 @@ int main(void)
     RUN_STRNCMP_TEST("Extended ASCII: s1 > s2", s_ext1, s_ext2, 4); // Should be s1 > s2
     RUN_STRNCMP_TEST("Extended ASCII: s1 == s2", s_ext1, s_ext3, 4); // Should be s1 == s2
 
-    // 7. NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
-    // strncmp'e NULL pointer geçmek C standartlarında tanımsız davranıştır.
+    // 7. FT_NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
+    // strncmp'e FT_NULL pointer geçmek C standartlarında tanımsız davranıştır.
     // Bu yüzden bu testleri çalıştırmak programın çökmesine neden olabilir.
-    // RUN_STRNCMP_TEST("NULL s1", NULL, "test", 5);
-    // RUN_STRNCMP_TEST("NULL s2", "test", NULL, 5);
-    // RUN_STRNCMP_TEST("NULL s1, NULL s2", NULL, NULL, 5);
+    // RUN_STRNCMP_TEST("FT_NULL s1", FT_NULL, "test", 5);
+    // RUN_STRNCMP_TEST("FT_NULL s2", "test", FT_NULL, 5);
+    // RUN_STRNCMP_TEST("FT_NULL s1, FT_NULL s2", FT_NULL, FT_NULL, 5);
 
 
     printf("\n--- Test Summary for ft_strncmp ---\n");

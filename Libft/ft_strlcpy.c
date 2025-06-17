@@ -6,16 +6,16 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:43:58 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:08:04 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:57:28 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-size_t	ft_strlcpy(char *dst, char const *src, size_t size)
+t_size_t	ft_strlcpy(char *dst, char const *src, t_size_t size)
 {
-	size_t	i;
-	size_t	src_len;
+	t_size_t	i;
+	t_size_t	src_len;
 
 	src_len = 0;
 	while (src[src_len])

@@ -64,7 +64,7 @@ int main(void)
     RUN_ISALPHA_TEST("Whitespace ' '", ' ');
     RUN_ISALPHA_TEST("Newline '\\n'", '\n');
     RUN_ISALPHA_TEST("Tab '\\t'", '\t');
-    RUN_ISALPHA_TEST("Null char '\\0'", '\0');
+    RUN_ISALPHA_TEST("FT_NULL char '\\0'", '\0');
 
     // 6. Sınır Değerler (ASCII Tablosuna göre)
     RUN_ISALPHA_TEST("ASCII 64 ('@')", 64);

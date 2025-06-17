@@ -6,13 +6,13 @@
 #include "libft.h"     // Eğer libft.h main.c ile aynı dizindeyse
 
 // İç yardımcı fonksiyon: Bellek içeriğini görselleştirmek için (önceki gibi)
-void print_memory(const char *label, const char *mem, size_t n) {
+void print_memory(const char *label, const char *mem, t_size_t n) {
     printf("%s [", label);
-    for (size_t i = 0; i < n; ++i) {
+    for (t_size_t i = 0; i < n; ++i) {
         if (mem[i] >= 32 && mem[i] <= 126) // Yazdırılabilir karakterler
             printf("%c", mem[i]);
         else if (mem[i] == '\0')
-            printf("N"); // Null bayt için 'N' (Null)
+            printf("N"); // FT_NULL bayt için 'N' (FT_NULL)
         else
             printf("."); // Diğer yazdırılamayan karakterler için nokta
     }
@@ -20,15 +20,15 @@ void print_memory(const char *label, const char *mem, size_t n) {
 }
 
 // Test yardımcı fonksiyonu: Tek bir test senaryosunu çalıştırır ve sonucu döndürür.
-static int _run_bzero_test_case(void *dest_ft, void *dest_original, const char *initial_str, size_t n, const char *test_name) {
-    size_t initial_len = strlen(initial_str); // Başlangıç stringinin uzunluğu
+static int _run_bzero_test_case(void *dest_ft, void *dest_original, const char *initial_str, t_size_t n, const char *test_name) {
+    t_size_t initial_len = strlen(initial_str); // Başlangıç stringinin uzunluğu
 
     // ft_bzero için kopyala
-    memcpy(dest_ft, initial_str, initial_len + 1); // +1 null terminator için
+    memcpy(dest_ft, initial_str, initial_len + 1); // +1 FT_NULL terminator için
     ft_bzero(dest_ft, n);
 
     // orijinal bzero için kopyala (bzero Linux'ta direkt yoksa memset(...,0,...) kullan)
-    memcpy(dest_original, initial_str, initial_len + 1); // +1 null terminator için
+    memcpy(dest_original, initial_str, initial_len + 1); // +1 FT_NULL terminator için
     // macOS'ta <strings.h> ile bzero var. Linux'ta genellikle <string.h> içindeki memset kullanılır.
     // Her platformda çalışması için memset(..., 0, ...) kullanmak daha güvenli.
     memset(dest_original, 0, n); 
@@ -47,7 +47,7 @@ static int _run_bzero_test_case(void *dest_ft, void *dest_original, const char *
     // Geçici buffer'ı full karşılaştırmak için:
     // Örneğin, 'a' 97, 'b' 98. bzero 0 yapar.
     // 'memcmp' n kadar baytı karşılaştırmalı.
-    int passed = (memcmp(dest_ft, dest_original, initial_len + 1) == 0); // null terminator'ı da dahil et
+    int passed = (memcmp(dest_ft, dest_original, initial_len + 1) == 0); // FT_NULL terminator'ı da dahil et
 
     if (!passed) {
         printf("❌ FAILED: %s\n", test_name);
@@ -55,7 +55,7 @@ static int _run_bzero_test_case(void *dest_ft, void *dest_original, const char *
         print_memory(" ", initial_str, initial_len);
         printf("  Bytes to zero: %zu\n", n);
         printf("  ft_bzero result: ");
-        print_memory(" ", dest_ft, initial_len + 1); // null terminator'ı da görselleştir
+        print_memory(" ", dest_ft, initial_len + 1); // FT_NULL terminator'ı da görselleştir
         printf("  Original bzero/memset result: ");
         print_memory(" ", dest_original, initial_len + 1);
     }
@@ -92,11 +92,11 @@ int main(void)
     RUN_BZERO_TEST("Empty string, n = 0", "", 0); // Beklenti: ""
     RUN_BZERO_TEST("Zero more than string length (trailing garbage is zeroed)", "Short", 10); // "Short\0...\0" -> "NNNNN\0\0\0\0\0" (ilk 5 + 5 adet 0)
 
-    // 3. NULL Pointer Testi (BU HALA SEGFAULT VEREBİLİR, YORUM SATIRI KALMALI)
-    // bzero/ft_bzero'ya NULL pointer geçmek, n=0 olsa bile C standartlarında tanımsız davranıştır.
+    // 3. FT_NULL Pointer Testi (BU HALA SEGFAULT VEREBİLİR, YORUM SATIRI KALMALI)
+    // bzero/ft_bzero'ya FT_NULL pointer geçmek, n=0 olsa bile C standartlarında tanımsız davranıştır.
     // Bu yüzden bu testleri çalıştırmak programın çökmesine neden olabilir.
-    // RUN_BZERO_TEST("NULL pointer, n = 5", NULL, 5);
-    // RUN_BZERO_TEST("NULL pointer, n = 0", NULL, 0);
+    // RUN_BZERO_TEST("FT_NULL pointer, n = 5", FT_NULL, 5);
+    // RUN_BZERO_TEST("FT_NULL pointer, n = 0", FT_NULL, 0);
 
     printf("\n--- Test Summary for ft_bzero ---\n");
     if (total_tests == passed_tests) {

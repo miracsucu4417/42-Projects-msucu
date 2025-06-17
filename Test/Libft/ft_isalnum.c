@@ -66,7 +66,7 @@ int main(void)
     RUN_ISALNUM_TEST("Whitespace ' '", ' ');
     RUN_ISALNUM_TEST("Newline '\\n'", '\n');
     RUN_ISALNUM_TEST("Tab '\\t'", '\t');
-    RUN_ISALNUM_TEST("Null char '\\0'", '\0');
+    RUN_ISALNUM_TEST("FT_NULL char '\\0'", '\0');
 
     // 6. Sınır Değerler (ASCII Tablosuna göre)
     RUN_ISALNUM_TEST("ASCII 47 (Before '0')", 47); // '/'

@@ -6,11 +6,11 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 23:00:34 by msucu             #+#    #+#             */
-/*   Updated: 2025/05/28 18:03:30 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:51:01 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 char	*ft_strchr(char const *s, int c)
 {
@@ -22,5 +22,5 @@ char	*ft_strchr(char const *s, int c)
 	if (*s == letter)
 		return ((char *) s);
 	else
-		return (NULL);
+		return (FT_NULL);
 }

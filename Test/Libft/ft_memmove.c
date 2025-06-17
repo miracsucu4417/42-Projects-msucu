@@ -7,13 +7,13 @@
 #include "libft.h"     // Eğer libft.h main.c ile aynı dizindeyse
 
 // İç yardımcı fonksiyon: Bellek içeriğini görselleştirmek için
-void print_memory(const char *label, const char *mem, size_t n) {
+void print_memory(const char *label, const char *mem, t_size_t n) {
     printf("%s [", label);
-    for (size_t i = 0; i < n; ++i) {
+    for (t_size_t i = 0; i < n; ++i) {
         if (mem[i] >= 32 && mem[i] <= 126) // Yazdırılabilir karakterler
             printf("%c", mem[i]);
         else if (mem[i] == '\0')
-            printf("N"); // Null bayt için 'N' (Null)
+            printf("N"); // FT_NULL bayt için 'N' (FT_NULL)
         else
             printf("."); // Diğer yazdırılamayan karakterler için nokta
     }
@@ -23,7 +23,7 @@ void print_memory(const char *label, const char *mem, size_t n) {
 // Test yardımcı fonksiyonu: Tek bir test senaryosunu çalıştırır ve sonucu döndürür.
 // `dest_ft`, `dest_original` bu test için oluşturulan mutable buffer'lardır.
 static int _run_memmove_test_case(char *dest_ft, char *dest_original,
-                                  const char *initial_buffer_str, size_t initial_len, size_t n_bytes,
+                                  const char *initial_buffer_str, t_size_t initial_len, t_size_t n_bytes,
                                   char *dest_offset_ptr_from_initial, char *src_offset_ptr_from_initial,
                                   const char *test_name) {
     
@@ -123,13 +123,13 @@ int main(void)
     RUN_MEMMOVE_TEST("Overlap: dest > src (copy backward)", base_str_1, 0, 2, 5);
     RUN_MEMMOVE_TEST("Overlap: dest > src (larger N)", base_str_2, 0, 1, 8);
 
-    // 5. NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
-    // memmove'a NULL pointer geçmek, n=0 olsa bile C standartlarında tanımsız davranıştır.
+    // 5. FT_NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
+    // memmove'a FT_NULL pointer geçmek, n=0 olsa bile C standartlarında tanımsız davranıştır.
     // Bu yüzden bu testleri çalıştırmak programın çökmesine neden olabilir.
-    // RUN_MEMMOVE_TEST("NULL dest, n=5", NULL, 0, 0, 5); // Cannot use NULL as initial_buffer_str
-    // RUN_MEMMOVE_TEST("NULL src, n=5", "test", 0, 0, 5); // Cannot use NULL as offset from "test"
-    // RUN_MEMMOVE_TEST("NULL dest, n=0", NULL, 0, 0, 0);
-    // RUN_MEMMOVE_TEST("NULL src, n=0", "test", 0, 0, 0);
+    // RUN_MEMMOVE_TEST("FT_NULL dest, n=5", FT_NULL, 0, 0, 5); // Cannot use FT_NULL as initial_buffer_str
+    // RUN_MEMMOVE_TEST("FT_NULL src, n=5", "test", 0, 0, 5); // Cannot use FT_NULL as offset from "test"
+    // RUN_MEMMOVE_TEST("FT_NULL dest, n=0", FT_NULL, 0, 0, 0);
+    // RUN_MEMMOVE_TEST("FT_NULL src, n=0", "test", 0, 0, 0);
 
     printf("\n--- Test Summary for ft_memmove ---\n");
     if (total_tests == passed_tests) {

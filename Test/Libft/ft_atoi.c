@@ -10,7 +10,7 @@ static int test_atoi_case(const char *str, int expected, const char *test_name)
     if (result != expected)
     {
         printf("❌ FAILED: %s\n", test_name);
-        printf("  Input: \"%s\"\n", str ? str : "NULL");
+        printf("  Input: \"%s\"\n", str ? str : "FT_NULL");
         printf("  Expected: %d\n", expected);
         printf("  Got: %d\n\n", result);
         return 0;
@@ -39,7 +39,7 @@ int main(void)
     total++; if (test_atoi_case("123abc456", 123, "Stop at first non-digit")) passed++;
     total++; if (test_atoi_case("abc123", 0, "No leading number")) passed++;
     total++; if (test_atoi_case("", 0, "Empty string")) passed++;
-    total++; if (test_atoi_case(NULL, 0, "NULL string")) passed++;
+    total++; if (test_atoi_case(FT_NULL, 0, "FT_NULL string")) passed++;
 
     printf("\n--- Test Summary ---\n");
     if (total == passed)

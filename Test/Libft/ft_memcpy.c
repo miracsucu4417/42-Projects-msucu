@@ -7,13 +7,13 @@
 #include "libft.h"     // Eğer libft.h main.c ile aynı dizindeyse
 
 // İç yardımcı fonksiyon: Bellek içeriğini görselleştirmek için
-void print_memory(const char *label, const char *mem, size_t n) {
+void print_memory(const char *label, const char *mem, t_size_t n) {
     printf("%s [", label);
-    for (size_t i = 0; i < n; ++i) {
+    for (t_size_t i = 0; i < n; ++i) {
         if (mem[i] >= 32 && mem[i] <= 126) // Yazdırılabilir karakterler
             printf("%c", mem[i]);
         else if (mem[i] == '\0')
-            printf("N"); // Null bayt için 'N' (Null)
+            printf("N"); // FT_NULL bayt için 'N' (FT_NULL)
         else
             printf("."); // Diğer yazdırılamayan karakterler için nokta
     }
@@ -22,7 +22,7 @@ void print_memory(const char *label, const char *mem, size_t n) {
 
 // Test yardımcı fonksiyonu: Tek bir test senaryosunu çalıştırır ve sonucu döndürür.
 // Bu fonksiyon, her test için geçici buffer'ları hazırlar.
-static int _run_memcpy_test_case(const char *initial_src_val, size_t initial_src_len, size_t n_bytes, const char *test_name) {
+static int _run_memcpy_test_case(const char *initial_src_val, t_size_t initial_src_len, t_size_t n_bytes, const char *test_name) {
     // Statik olarak büyük bir buffer tanımlayalım, her testte kopyalayacağız
     // Minimum 200 veya daha büyük bir boyut seçilebilir.
     char ft_dest_buf[200];
@@ -77,10 +77,10 @@ int main(void)
     printf("--- Running ft_memcpy Tests ---\n\n");
 
     // 1. Temel Kopyalamalar
-    RUN_MEMCPY_TEST("Basic string copy (full)", "Hello World!", strlen("Hello World!") + 1); // +1 null terminator için
+    RUN_MEMCPY_TEST("Basic string copy (full)", "Hello World!", strlen("Hello World!") + 1); // +1 FT_NULL terminator için
     RUN_MEMCPY_TEST("Partial string copy", "Long string", 5); // "Long "
-    RUN_MEMCPY_TEST("Empty string as source", "", 1); // Sadece null terminator kopyala
-    RUN_MEMCPY_TEST("String with internal null", "A\0B\0C", 5); // Kopyalanacak bayt sayısı null'u içeriyor
+    RUN_MEMCPY_TEST("Empty string as source", "", 1); // Sadece FT_NULL terminator kopyala
+    RUN_MEMCPY_TEST("String with internal FT_NULL", "A\0B\0C", 5); // Kopyalanacak bayt sayısı FT_NULL'u içeriyor
 
     // 2. Kenar Durumlar
     RUN_MEMCPY_TEST("N = 0 (No copy)", "Any string", 0); // Hedef değişmemeli
@@ -103,13 +103,13 @@ int main(void)
     // Başka bir yardımcı fonksiyon yazmak veya strlen'i çağırmamak gerekir.
     // Şimdilik string literal'larına odaklanalım, onlar en yaygın kullanım.
     
-    // 6. NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
-    // memcpy'ye NULL pointer geçmek, n=0 olsa bile C standartlarında tanımsız davranıştır.
+    // 6. FT_NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
+    // memcpy'ye FT_NULL pointer geçmek, n=0 olsa bile C standartlarında tanımsız davranıştır.
     // Bu yüzden bu testleri çalıştırmak programın çökmesine neden olabilir.
-    // RUN_MEMCPY_TEST("NULL dest, n=5", NULL, 5);
-    // RUN_MEMCPY_TEST("NULL src, n=5", "test", 5);
-    // RUN_MEMCPY_TEST("NULL dest, n=0", NULL, 0);
-    // RUN_MEMCPY_TEST("NULL src, n=0", "test", 0);
+    // RUN_MEMCPY_TEST("FT_NULL dest, n=5", FT_NULL, 5);
+    // RUN_MEMCPY_TEST("FT_NULL src, n=5", "test", 5);
+    // RUN_MEMCPY_TEST("FT_NULL dest, n=0", FT_NULL, 0);
+    // RUN_MEMCPY_TEST("FT_NULL src, n=0", "test", 0);
 
     printf("\n--- Test Summary for ft_memcpy ---\n");
     if (total_tests == passed_tests) {

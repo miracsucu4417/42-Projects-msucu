@@ -9,33 +9,33 @@
 
 #define TEST_FILENAME "test.txt"
 
-// Dosya içeriğini oku ve null-terminated string olarak döndür
-static char *read_file_content(const char *filename, size_t *out_size) {
+// Dosya içeriğini oku ve FT_NULL-terminated string olarak döndür
+static char *read_file_content(const char *filename, t_size_t *out_size) {
     int fd = open(filename, O_RDONLY);
-    if (fd < 0) return NULL;
+    if (fd < 0) return FT_NULL;
 
     off_t size = lseek(fd, 0, SEEK_END);
     if (size == -1) {
         close(fd);
-        return NULL;
+        return FT_NULL;
     }
 
     if (lseek(fd, 0, SEEK_SET) == -1) {
         close(fd);
-        return NULL;
+        return FT_NULL;
     }
 
     char *buffer = malloc(size + 1);
     if (!buffer) {
         close(fd);
-        return NULL;
+        return FT_NULL;
     }
 
-    ssize_t read_bytes = read(fd, buffer, size);
+    st_size_t read_bytes = read(fd, buffer, size);
     if (read_bytes != size) {
         free(buffer);
         close(fd);
-        return NULL;
+        return FT_NULL;
     }
 
     buffer[size] = '\0';
@@ -57,7 +57,7 @@ static int _run_putendl_fd_test_case(const char *string_to_write, const char *ex
 
     close(fd);
 
-    size_t size = 0;
+    t_size_t size = 0;
     char *content = read_file_content(TEST_FILENAME, &size);
     if (!content) {
         printf("❌ FAILED: %s (Cannot read test file)\n", test_name);

@@ -5,13 +5,13 @@
 #include "libft.h"     // Eğer libft.h main.c ile aynı dizindeyse
 
 // İç yardımcı fonksiyon: Bellek içeriğini görselleştirmek için
-void print_memory(const char *label, const char *mem, size_t n) {
+void print_memory(const char *label, const char *mem, t_size_t n) {
     printf("%s [", label);
-    for (size_t i = 0; i < n; ++i) {
+    for (t_size_t i = 0; i < n; ++i) {
         if (mem[i] >= 32 && mem[i] <= 126) // Yazdırılabilir karakterler
             printf("%c", mem[i]);
         else if (mem[i] == '\0')
-            printf("N"); // Null bayt için 'N' (Null)
+            printf("N"); // FT_NULL bayt için 'N' (FT_NULL)
         else
             printf("."); // Diğer yazdırılamayan karakterler için nokta
     }
@@ -55,9 +55,9 @@ int main(void)
     // 1. Karakter Bulundu
     RUN_STRCHR_TEST("Found at beginning", "Hello World", 'H');
     RUN_STRCHR_TEST("Found in middle", "Hello World", 'o');
-    RUN_STRCHR_TEST("Found at end (before null)", "Hello World", 'd');
+    RUN_STRCHR_TEST("Found at end (before FT_NULL)", "Hello World", 'd');
     RUN_STRCHR_TEST("Found multiple times (first occurrence)", "banana", 'a'); // Should point to first 'a'
-    RUN_STRCHR_TEST("Found null terminator", "Hello", '\0'); // Should point to '\0'
+    RUN_STRCHR_TEST("Found FT_NULL terminator", "Hello", '\0'); // Should point to '\0'
 
     // 2. Karakter Bulunamadı
     RUN_STRCHR_TEST("Not found", "Hello World", 'x');
@@ -65,10 +65,10 @@ int main(void)
     RUN_STRCHR_TEST("Empty string, char not found", "", 'a');
 
     // 3. Kenar Durumlar
-    RUN_STRCHR_TEST("Empty string, find null terminator", "", '\0'); // Should point to the null terminator
+    RUN_STRCHR_TEST("Empty string, find FT_NULL terminator", "", '\0'); // Should point to the FT_NULL terminator
     RUN_STRCHR_TEST("Single char string, found", "A", 'A');
     RUN_STRCHR_TEST("Single char string, not found", "A", 'B');
-    RUN_STRCHR_TEST("String containing only null", "", '\0'); // Same as empty string test for null
+    RUN_STRCHR_TEST("String containing only FT_NULL", "", '\0'); // Same as empty string test for FT_NULL
 
     // 4. Özel Karakterler (int c)
     RUN_STRCHR_TEST("Find digit", "abc123xyz", '2');
@@ -86,11 +86,11 @@ int main(void)
     RUN_STRCHR_TEST("Long string - found in middle", long_str, 'Y');
     RUN_STRCHR_TEST("Long string - not found", long_str, 'Z');
 
-    // 6. NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
-    // strchr'a NULL s geçmek C standartlarında tanımsız davranıştır.
+    // 6. FT_NULL Pointer Testleri (UNSAFE - YORUM SATIRI KALMALI)
+    // strchr'a FT_NULL s geçmek C standartlarında tanımsız davranıştır.
     // Bu yüzden bu testleri çalıştırmak programın çökmesine neden olabilir.
-    // RUN_STRCHR_TEST("NULL string", NULL, 'a');
-    // RUN_STRCHR_TEST("NULL string, find null", NULL, '\0');
+    // RUN_STRCHR_TEST("FT_NULL string", FT_NULL, 'a');
+    // RUN_STRCHR_TEST("FT_NULL string, find FT_NULL", FT_NULL, '\0');
 
     printf("\n--- Test Summary for ft_strchr ---\n");
     if (total_tests == passed_tests) {

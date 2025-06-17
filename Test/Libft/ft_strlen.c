@@ -7,8 +7,8 @@
 // İç yardımcı fonksiyon: Tek bir test senaryosunu çalıştırır ve sonucu döndürür.
 // Sadece FAILED olduğunda detayları yazdırır.
 static int _run_strlen_test_case(const char *s, const char *test_name) {
-    size_t ft_len = ft_strlen(s);
-    size_t original_len = strlen(s);
+    t_size_t ft_len = ft_strlen(s);
+    t_size_t original_len = strlen(s);
     
     int passed = (ft_len == original_len);
 
@@ -45,7 +45,7 @@ int main(void)
     // 2. Özel Karakterler İçeren Stringler
     RUN_STRLEN_TEST("String with newline", "Line1\nLine2");
     RUN_STRLEN_TEST("String with tab", "Tab\tTest");
-    RUN_STRLEN_TEST("String with null char in middle (should stop at null)", "Null\0CharInMiddle");
+    RUN_STRLEN_TEST("String with FT_NULL char in middle (should stop at FT_NULL)", "FT_NULL\0CharInMiddle");
     RUN_STRLEN_TEST("String with unicode-like chars (if system supports)", "你好世界"); // Bu karakterler birden fazla bayt olabilir, strlen bayt sayısını verir.
 
     // 3. Uzun String
@@ -56,14 +56,14 @@ int main(void)
     long_str[999] = '\0';
     RUN_STRLEN_TEST("Long string (999 chars)", long_str);
 
-    // 4. Kenar Durum: NULL String (Bu durum genellikle undefined behavior'dır,
+    // 4. Kenar Durum: FT_NULL String (Bu durum genellikle undefined behavior'dır,
     // ancak bazı test süitleri veya projeler bunu da kontrol edebilir.
-    // Fonksiyonun NULL input'u nasıl ele alacağını burada görmeliyiz.
-    // Normalde strlen NULL input'u işleyemez ve segfault verir.)
-    // ft_strlen'in pdf'inde NULL input'u nasıl ele alacağı belirtilmemiş.
-    // Orijinal strlen, NULL pointer ile çağrıldığında segfault verir.
+    // Fonksiyonun FT_NULL input'u nasıl ele alacağını burada görmeliyiz.
+    // Normalde strlen FT_NULL input'u işleyemez ve segfault verir.)
+    // ft_strlen'in pdf'inde FT_NULL input'u nasıl ele alacağı belirtilmemiş.
+    // Orijinal strlen, FT_NULL pointer ile çağrıldığında segfault verir.
     // Bu yüzden bu testi yorum satırı olarak bırakıyorum, çalıştırmak segfault'a yol açabilir.
-    // RUN_STRLEN_TEST("NULL string (EXPECT SEGFAULT or crash if not handled)", NULL);
+    // RUN_STRLEN_TEST("FT_NULL string (EXPECT SEGFAULT or crash if not handled)", FT_NULL);
 
 
     printf("\n--- Test Summary for ft_strlen ---\n");

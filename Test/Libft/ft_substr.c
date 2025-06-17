@@ -7,13 +7,13 @@
 #include "libft.h"     // Eğer libft.h main.c ile aynı dizindeyse
 
 // İç yardımcı fonksiyon: Bellek içeriğini görselleştirmek için (MAIN'DEN ÖNCE TANIMLANDI)
-void print_memory(const char *label, const char *mem, size_t n) {
+void print_memory(const char *label, const char *mem, t_size_t n) {
     printf("%s [", label);
-    for (size_t i = 0; i < n; ++i) {
+    for (t_size_t i = 0; i < n; ++i) {
         if (mem[i] >= 32 && mem[i] <= 126) // Yazdırılabilir karakterler
             printf("%c", mem[i]);
         else if (mem[i] == '\0')
-            printf("N"); // Null bayt için 'N' (Null)
+            printf("N"); // FT_NULL bayt için 'N' (FT_NULL)
         else
             printf("."); // Diğer yazdırılamayan karakterler için nokta
     }
@@ -22,24 +22,24 @@ void print_memory(const char *label, const char *mem, size_t n) {
 
 
 // Test yardımcı fonksiyonu: Tek bir test senaryosunu çalıştırır ve sonucu döndürür.
-static int _run_substr_test_case(const char *s, unsigned int start, size_t len, 
+static int _run_substr_test_case(const char *s, unsigned int start, t_size_t len, 
                                   const char *expected_result_str, const char *test_name) {
-    char *ft_result = NULL;
+    char *ft_result = FT_NULL;
     int passed = 1; // Varsayılan olarak geçer
 
     ft_result = ft_substr(s, start, len);
 
-    // Beklenen sonuç NULL ise (malloc hatası bekleniyorsa veya s NULL ise)
-    if (expected_result_str == NULL) {
-        if (ft_result != NULL) {
-            printf("❌ FAILED: %s (Expected NULL, got %p)\n", test_name, (void *)ft_result);
+    // Beklenen sonuç FT_NULL ise (malloc hatası bekleniyorsa veya s FT_NULL ise)
+    if (expected_result_str == FT_NULL) {
+        if (ft_result != FT_NULL) {
+            printf("❌ FAILED: %s (Expected FT_NULL, got %p)\n", test_name, (void *)ft_result);
             passed = 0;
         }
     }
-    // Beklenen sonuç NULL değilse
+    // Beklenen sonuç FT_NULL değilse
     else {
-        if (ft_result == NULL) {
-            printf("❌ FAILED: %s (Expected \"%s\", got NULL)\n", test_name, expected_result_str);
+        if (ft_result == FT_NULL) {
+            printf("❌ FAILED: %s (Expected \"%s\", got FT_NULL)\n", test_name, expected_result_str);
             passed = 0;
         } else {
             // İçerik ve uzunluk karşılaştırması
@@ -90,27 +90,27 @@ int main(void)
     // 4. Boş Stringler
     RUN_SUBSTR_TEST("Empty input string", "", 0, 5, ""); // Boş string'den alt string
 
-    // 5. NULL Input String (PDF'e göre NULL dönmeli)
-    RUN_SUBSTR_TEST("NULL input string (Expected NULL)", NULL, 0, 5, NULL); // NULL için NULL beklenir
+    // 5. FT_NULL Input String (PDF'e göre FT_NULL dönmeli)
+    RUN_SUBSTR_TEST("FT_NULL input string (Expected FT_NULL)", FT_NULL, 0, 5, FT_NULL); // FT_NULL için FT_NULL beklenir
 
-    // 6. Stringde Dahili Null Karakter Testi (BEKLENTİ DÜZELTİLDİ)
+    // 6. Stringde Dahili FT_NULL Karakter Testi (BEKLENTİ DÜZELTİLDİ)
     // ft_strlen("abc\0def") 3 döndürdüğü için,
     // ft_substr("abc\0def", 0, 7) aslında sadece 3 karakter kopyalar ve '\0' ile sonlandırır.
-    char s_internal_null[] = "abc\0def"; // Bu bir C stringi, strlen 3 verir.
-    char expected_internal_null_substr[] = {'a', 'b', 'c', '\0'}; // Beklenen 3 bayt + null
-    char *ft_res_internal = ft_substr(s_internal_null, 0, 7); // ft_substr 3 karakter kopyalar
+    char s_internal_FT_NULL[] = "abc\0def"; // Bu bir C stringi, strlen 3 verir.
+    char expected_internal_FT_NULL_substr[] = {'a', 'b', 'c', '\0'}; // Beklenen 3 bayt + FT_NULL
+    char *ft_res_internal = ft_substr(s_internal_FT_NULL, 0, 7); // ft_substr 3 karakter kopyalar
 
-    int passed_internal_null_test = 1;
-    if (ft_res_internal == NULL || memcmp(ft_res_internal, expected_internal_null_substr, 4) != 0) { // 4 byte: 3 + null
-        printf("❌ FAILED: Substring with internal null (memcmp check)\n");
-        printf("  Input: \"%s\", start: 0, len: 7\n", s_internal_null);
+    int passed_internal_FT_NULL_test = 1;
+    if (ft_res_internal == FT_NULL || memcmp(ft_res_internal, expected_internal_FT_NULL_substr, 4) != 0) { // 4 byte: 3 + FT_NULL
+        printf("❌ FAILED: Substring with internal FT_NULL (memcmp check)\n");
+        printf("  Input: \"%s\", start: 0, len: 7\n", s_internal_FT_NULL);
         printf("  ft_substr returned: %p\n", (void*)ft_res_internal);
         if (ft_res_internal) print_memory("  Content: ", ft_res_internal, 4); // Sadece 4 baytı göster
-        passed_internal_null_test = 0;
+        passed_internal_FT_NULL_test = 0;
     }
     // Bu manuel testin toplam test sayısına eklenmesi:
     total_tests++; 
-    if (passed_internal_null_test) passed_tests++; 
+    if (passed_internal_FT_NULL_test) passed_tests++; 
 
     if (ft_res_internal) free(ft_res_internal);
 

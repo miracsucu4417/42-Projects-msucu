@@ -6,15 +6,15 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 23:24:17 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:08:07 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:57:28 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-size_t	ft_strlen(char const *s)
+t_size_t	ft_strlen(char const *s)
 {
-	size_t	i;
+	t_size_t	i;
 
 	i = 0;
 	while (s[i])

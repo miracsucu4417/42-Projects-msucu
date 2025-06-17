@@ -6,7 +6,7 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 22:26:26 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/01 18:07:35 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/17 18:51:01 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ char	*ft_itoa(int n)
 	long_n = (long int) n;
 	digit_count = ft_digit_count(n);
 	str = (char *) ft_calloc(digit_count + 1, sizeof(char));
-	if (str == NULL)
-		return (NULL);
+	if (str == FT_NULL)
+		return (FT_NULL);
 	if (long_n < 0)
 	{
 		long_n *= -1;

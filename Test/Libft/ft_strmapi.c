@@ -43,14 +43,14 @@ static int _run_strmapi_test_case(const char *s, char (*f)(unsigned int, char),
     char *ft_result = ft_strmapi(s, f);
     int passed = 1;
 
-    if (s == NULL) {
-        if (ft_result != NULL) {
-            printf("❌ FAILED: %s (Input NULL but result not NULL)\n", test_name);
+    if (s == FT_NULL) {
+        if (ft_result != FT_NULL) {
+            printf("❌ FAILED: %s (Input FT_NULL but result not FT_NULL)\n", test_name);
             passed = 0;
         }
     } else {
-        if (ft_result == NULL) {
-            printf("❌ FAILED: %s (Returned NULL)\n", test_name);
+        if (ft_result == FT_NULL) {
+            printf("❌ FAILED: %s (Returned FT_NULL)\n", test_name);
             passed = 0;
         } else {
             if (strcmp(ft_result, expected) != 0) {
@@ -87,8 +87,8 @@ int main(void) {
     RUN_STRMAPI_TEST("Alternate case on mixed case", "HeLLo", alternate_case, "HeLlO");
     RUN_STRMAPI_TEST("Empty string", "", identity, "");
 
-    // NULL girdi testi - PDF açıklamasında yok ama güvenlik için test
-    RUN_STRMAPI_TEST("NULL input string", NULL, identity, NULL);
+    // FT_NULL girdi testi - PDF açıklamasında yok ama güvenlik için test
+    RUN_STRMAPI_TEST("FT_NULL input string", FT_NULL, identity, FT_NULL);
 
     printf("\n--- Test Summary for ft_strmapi ---\n");
     if (total_tests == passed_tests) {
