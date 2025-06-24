@@ -6,54 +6,48 @@
 /*   By: msucu <msucu@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:26:27 by msucu             #+#    #+#             */
-/*   Updated: 2025/06/22 11:34:21 by msucu            ###   ########.fr       */
+/*   Updated: 2025/06/24 16:29:43 by msucu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-static void	ft_copy_to_temp(unsigned char temp[1024], const void *src, t_size_t n)
+static void	ft_forward(unsigned char *d, const unsigned char *s, t_size_t n)
 {
-	int				count;
-	int				now;
+	t_size_t	i;
 
-	count = 0;
-	while (n > 0)
+	i = 0;
+	while (i < n)
 	{
-		now = 1024;
-		if (n < 1024)
-			now = n;
-		ft_memcpy(temp, src + 1024 * count, now);
-		n -= 1024;
-		count++;
+		d[i] = s[i];
+		i++;
 	}
 }
 
-static void	ft_copy_to_dest(void *dest, unsigned char temp[1024], t_size_t n)
+static void	ft_reverse(unsigned char *d, const unsigned char *s, t_size_t n)
 {
-	int				count;
-	int				now;
+	t_size_t	i;
 
-	count = 0;
-	while (n > 0)
+	i = n;
+	while (i > 0)
 	{
-		now = 1024;
-		if (n < 1024)
-			now = n;
-		ft_memcpy(dest + 1024 * count, temp, now);
-		n -= 1024;
-		count++;
+		i--;
+		d[i] = s[i];
 	}
 }
 
 void	*ft_memmove(void *dest, const void *src, t_size_t n)
 {
-	unsigned char	temp[1024];
+	unsigned char		*d;
+	const unsigned char	*s;
 
 	if (dest == src || n == 0)
 		return (dest);
-	ft_copy_to_temp(temp, src, n);
-	ft_copy_to_dest(dest, temp, n);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (s < d)
+		ft_reverse(d, s, n);
+	else
+		ft_forward(d, s, n);
 	return (dest);
 }
